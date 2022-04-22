@@ -1,4 +1,4 @@
-# Getting Started with Create React App
+# vidly-react-project
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
@@ -11,60 +11,109 @@ In the project directory, you can run:
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Table of contents
 
-### `npm test`
+- [Overview](#overview)
+  - [The challenge](#the-challenge)
+  - [Links](#links)
+- [My process](#my-process)
+  - [Built with](#built-with)
+  - [What I learned](#what-i-learned)
+  - [Continued development](#continued-development)
+- [Author](#author)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Overview
 
-### `npm run build`
+### The challenge
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Users should be able to:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- see simple table of movies which mimicks shopping list. User should see number of movies in the list and also be able to remove any item from the list.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Links
 
-### `npm run eject`
+- Solution URL: [https://github.com/TomasScerbak/airbnb-react-project.git]
+- Live Site URL: [https://tomasscerbak.github.io/airbnb-react-project/]
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## My process
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Built with
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- Semantic HTML5 markup
+- CSS custom properties
+- Bootstrap
+- React JS
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### What I learned
 
-## Learn More
+-creating component
+-specifying children
+-empedding expressions
+-setting attributes
+-rendering classes dynamically
+-rendering lists
+-conditional rendering
+-handling events
+-binding handling event
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```js
+import React, { Component } from 'react';
+import { getMovies } from '../services/fakeMovieService'
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+class Movies extends Component {
+    state = { 
+        movies: getMovies()
+     };
 
-### Code Splitting
+     handleDelete = movie => {
+        const movies = this.state.movies.filter(m => m._id !== movie._id);
+        this.setState({movies})
+     }
+    render() { 
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+        const { length: count } = this.state.movies;
 
-### Analyzing the Bundle Size
+        if (count === 0) 
+        return <p>There are no movies in the database</p>;
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+        return (
+            <React.Fragment>
+            <p>Showing {count} movies</p>
+            <table className='table'>
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Genre</th>
+                        <th>Stock</th>
+                        <th>Rate</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    { this.state.movies.map(movie => (
+                    <tr key={movie._id}>
+                        <td>{movie.title}</td>
+                        <td>{movie.genre.name}</td>
+                        <td>{movie.numberInStock}</td>
+                        <td>{movie.dailyRentalRate}</td>
+                        <td><button onClick={() => this.handleDelete(movie)} className='btn btn-danger btn-sm'>Delete</button></td>
+                    </tr>))}
+                </tbody>
+            </table>
+            </React.Fragment>
+        );
+    }
+}
+ 
+export default Movies;
+```
 
-### Making a Progressive Web App
+### Continued development
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+I will continue to use REACT and build REACT projects for further developement.
 
-### Advanced Configuration
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## Author
 
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Website - [Tomas Scerbak](https://tomasscerbak.github.io/tomas-scerbak-portfolio/)
+- Frontend Mentor - [@Potato](https://www.frontendmentor.io/profile/TomasScerbak)
