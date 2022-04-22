@@ -32,8 +32,8 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [https://github.com/TomasScerbak/airbnb-react-project.git]
-- Live Site URL: [https://tomasscerbak.github.io/airbnb-react-project/]
+- Solution URL: [https://github.com/TomasScerbak/vidly-react-project.git]
+- Live Site URL: [https://tomasscerbak.github.io/vidly-react-project/]
 
 ## My process
 
